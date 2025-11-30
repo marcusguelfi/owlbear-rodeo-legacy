@@ -53,6 +53,6 @@ services:
           name: "Owlbear Rodeo Legacy"
           envVarKey: RENDER_EXTERNAL_HOSTNAME
       - key: PORT
-        value: 9000
+        value: 9001
       - key: NODE_VERSION
         value: "16.16.0"

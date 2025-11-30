@@ -70,7 +70,7 @@ process.once("SIGTERM", () => {
 
   setTimeout(() => {
     process.exit(0);
-  }, 3000).unref();
+  }, 3001).unref();
 });
 
 process.on("unhandledRejection", (reason, p) => {
