@@ -3,20 +3,25 @@ services:
     build: ./backend/
     stop_grace_period: 30s
     init: true
-    ports: 
-      - 9001:9001
+    ports:
+      - "9001:9001"
     environment:
       PORT: 9001
       ALLOW_ORIGIN: ".*"
+      NODE_ENV: production
+    restart: unless-stopped
+
   frontend:
-    build: 
+    build:
       context: ./
+      dockerfile: Dockerfile.prod
     depends_on:
       - backend
     ports:
-      - 3001:3001
+      - "3001:80"
     environment:
-      REACT_APP_BROKER_URL: "http://localhost:9001"
+      # ✅ Trocar localhost pelo IP da sua máquina
+      REACT_APP_BROKER_URL: "http://192.168.0.111:9001"
       REACT_APP_VERSION: "1.10.2"
       REACT_APP_MAINTENANCE: "false"
-
+    restart: unless-stopped
