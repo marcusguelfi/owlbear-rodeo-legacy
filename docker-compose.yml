@@ -16,7 +16,7 @@ services:
       context: ./
       dockerfile: Dockerfile.prod
       args:  # ✅ Passar como argumentos de build
-        REACT_APP_BROKER_URL: "http://192.168.0.111:9001"
+        REACT_APP_BROKER_URL: "http://192.168.0.100:9001"
         REACT_APP_VERSION: "1.10.2"
         REACT_APP_MAINTENANCE: "false"
     depends_on:
