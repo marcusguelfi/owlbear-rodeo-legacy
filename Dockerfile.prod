@@ -1,7 +1,6 @@
 # BUILD STAGE
 FROM node:16.20.2-alpine3.18 AS builder
 
-# ✅ Instalar git
 RUN apk add --no-cache git
 
 RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
@@ -13,6 +12,15 @@ USER node
 RUN yarn install && yarn cache clean
 
 COPY --chown=node:node . .
+
+# ✅ Definir a variável de ambiente durante o build
+ARG REACT_APP_BROKER_URL
+ARG REACT_APP_VERSION
+ARG REACT_APP_MAINTENANCE
+
+ENV REACT_APP_BROKER_URL=$REACT_APP_BROKER_URL
+ENV REACT_APP_VERSION=$REACT_APP_VERSION
+ENV REACT_APP_MAINTENANCE=$REACT_APP_MAINTENANCE
 
 # Build de produção
 RUN yarn build
